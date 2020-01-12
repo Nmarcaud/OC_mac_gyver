@@ -4,6 +4,8 @@
 # imports
 import random
 
+max_x = 14
+max_y = 14
 
 # Class Map
 class Map():
@@ -14,8 +16,8 @@ class Map():
     liste_coordonnees = []
 
     # Liste de Coordonnées
-    x_list = range(0, 14)
-    y_list = range(0, 14)
+    x_list = range(0, max_x)
+    y_list = range(0, max_y)
 
     # Boucle de création de la grille de coordonnées
     for x in x_list:
@@ -26,6 +28,9 @@ class Map():
     # retour de la méthode
     return liste_coordonnees
 
+  # Affichage de la map
+  def show_map(self):
+    pass
 
 
 
@@ -37,13 +42,18 @@ class Hero():
     self.name = name
 
   # Position Initiale
-  position = [random.randint(0,14), random.randint(0,14)]
+  position = [max_x, max_y]
+  #position = [random.randint(0,max_x), random.randint(0,max_y)]
 
 
   # Mouvements de Mac Gyver ?
   def move_left(self, position):
     # -1 sur axe x
-    position[0] -= 1
+    # Condition, si arrivé au bord gauche de la map
+    if position[0] == 0:
+      position[0] = max_x
+    else:
+      position[0] -= 1
 
     # Message console
     print("Move Left")
@@ -51,10 +61,13 @@ class Hero():
     #retour
     return position
 
-
   def move_up(self, position):
     # +1 sur axe y
-    position[1] += 1
+    # Condition, si arrivé au bord supérieur de la map
+    if position[1] == max_y:
+      position[1] = 0
+    else:
+      position[1] += 1
 
     # Message console
     print("Move Up")
@@ -64,7 +77,11 @@ class Hero():
 
   def move_right(self, position):
     # +1 sur axe x
-    position[0] += 1
+    # Condition, si arrivé au bord droit de la map
+    if position[0] == max_x:
+      position[0] = 0
+    else:
+      position[0] += 1
 
     # Message console
     print("Move Right")
@@ -74,13 +91,19 @@ class Hero():
 
   def move_down(self, position):
     # -1 sur axe y
-    position[1] -= 1
+    # Condition, si arrivé au bord inférieur de la map
+    if position[1] == 0:
+      position[1] = max_y
+    else:
+      position[1] -= 1
 
     # Message console
     print("Move Down")
 
     # retour
     return position
+
+
 
 
 
@@ -109,16 +132,13 @@ def message_position(hero):
 mac_gyver = Hero("MacGyver")
 message_position(mac_gyver)
 
-#Test mouvement
+#Test mouvements
 mac_gyver.move_left(mac_gyver.position)
 message_position(mac_gyver)
-#Test mouvement
 mac_gyver.move_up(mac_gyver.position)
 message_position(mac_gyver)
-#Test mouvement
 mac_gyver.move_right(mac_gyver.position)
 message_position(mac_gyver)
-#Test mouvement
 mac_gyver.move_down(mac_gyver.position)
 message_position(mac_gyver)
 
