@@ -42,8 +42,7 @@ class Hero():
     self.name = name
 
   # Position Initiale
-  position = [max_x, max_y]
-  #position = [random.randint(0,max_x), random.randint(0,max_y)]
+  position = [random.randint(0,max_x), random.randint(0,max_y)]
 
 
   # Mouvements de Mac Gyver ?
@@ -132,16 +131,61 @@ def message_position(hero):
 mac_gyver = Hero("MacGyver")
 message_position(mac_gyver)
 
-#Test mouvements
-mac_gyver.move_left(mac_gyver.position)
-message_position(mac_gyver)
-mac_gyver.move_up(mac_gyver.position)
-message_position(mac_gyver)
-mac_gyver.move_right(mac_gyver.position)
-message_position(mac_gyver)
-mac_gyver.move_down(mac_gyver.position)
-message_position(mac_gyver)
+# Test mouvements
+# mac_gyver.move_left(mac_gyver.position)
+# message_position(mac_gyver)
+# mac_gyver.move_up(mac_gyver.position)
+# message_position(mac_gyver)
+# mac_gyver.move_right(mac_gyver.position)
+# message_position(mac_gyver)
+# mac_gyver.move_down(mac_gyver.position)
+# message_position(mac_gyver)
 
 # Test de la map
 map=Map()
 print(map.def_map())
+
+def user_action():
+  user_answer = str(input("Direction mac Gyver: "))
+  return user_answer
+
+
+def main():
+
+  message_accueil = """ Tu vas devoir donner une direction à MacGyver
+                    Gauche : 4
+                    Haut : 8
+                    Droite : 6
+                    Bas : 2
+                    
+                    Break : b
+                    """
+
+  # Affichage du message d'accueil
+  print(message_accueil)
+  user_answer = user_action()
+
+  while user_answer != "b":
+
+    if user_answer == "4":
+      mac_gyver.move_left(mac_gyver.position)
+      message_position(mac_gyver)
+      user_answer = user_action()
+    elif user_answer == "8":
+      mac_gyver.move_up(mac_gyver.position)
+      message_position(mac_gyver)
+      user_answer = user_action()
+    elif user_answer == "6":
+      mac_gyver.move_right(mac_gyver.position)
+      message_position(mac_gyver)
+      user_answer = user_action()
+    elif user_answer == "2":
+      mac_gyver.move_down(mac_gyver.position)
+      message_position(mac_gyver)
+      user_answer = user_action()
+
+
+
+
+if __name__ == "__main__":
+    main()
