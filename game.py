@@ -171,14 +171,17 @@ def main():
       mac_gyver.move_left(mac_gyver.position)
       message_position(mac_gyver)
       user_answer = user_action()
+
     elif user_answer == "8":
       mac_gyver.move_up(mac_gyver.position)
       message_position(mac_gyver)
       user_answer = user_action()
+
     elif user_answer == "6":
       mac_gyver.move_right(mac_gyver.position)
       message_position(mac_gyver)
       user_answer = user_action()
+
     elif user_answer == "2":
       mac_gyver.move_down(mac_gyver.position)
       message_position(mac_gyver)

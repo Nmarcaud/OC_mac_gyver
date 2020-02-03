@@ -1,9 +1,10 @@
 #! /usr/bin/env python3
 # coding: utf-8
 
+import pygame
+
 # Class Map
 class Map():
-
 
     def __init__(self):
 
@@ -42,6 +43,39 @@ class Map():
                 self.structure.append(line_map)
 
 
-    # Affichage de la map
-    def show_map(self):
-        pass
+    def show_map(self, screen):
+
+        # Définition sources images
+        background = pygame.image.load("ressource/background.png").convert()
+        mur = pygame.image.load("ressource/mur.png").convert()
+        gardian = pygame.image.load("ressource/Gardien.png").convert_alpha()
+
+
+        # Show background
+        screen.blit(background, (0,0))
+
+        # Init le nombre de ligne de la liste
+        n_line = 0
+        # Boucle sur la liste Structure
+        for line in self.structure:
+
+            # Init du nombre de sprite de la ligne concernée
+            n_sprite = 0
+            for sprite in line:
+
+                # Inversion des X et y dans mon code ! 40 = largeur d'une sprite
+                y = n_line * 40
+                x = n_sprite * 40
+
+                # Si c'est un mur
+                if sprite == "m":
+                    screen.blit(mur,(x,y))
+
+                # Si c'est la sortie
+                if sprite == "e":
+                    screen.blit(gardian, (x,y))
+
+                # incrémentation
+                n_sprite += 1
+            n_line += 1
+
