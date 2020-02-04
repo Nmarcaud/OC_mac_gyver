@@ -49,7 +49,15 @@ class Map():
         background = pygame.image.load("ressource/background.png").convert()
         mur = pygame.image.load("ressource/mur.png").convert()
         gardian = pygame.image.load("ressource/Gardien.png").convert_alpha()
+        gardian = pygame.transform.scale(gardian, (40, 40)) # Resize
 
+        # Items
+        niddle = pygame.image.load("ressource/seringue.png").convert_alpha()
+        niddle = pygame.transform.scale(niddle, (40, 40)) # Resize
+        tube = pygame.image.load("ressource/tube_plastique.png").convert_alpha()
+        tube = pygame.transform.scale(tube, (40, 40)) # Resize
+        ether = pygame.image.load("ressource/ether.png").convert_alpha()
+        ether = pygame.transform.scale(ether, (40, 40)) # Resize
 
         # Show background
         screen.blit(background, (0,0))
@@ -72,8 +80,20 @@ class Map():
                     screen.blit(mur,(x,y))
 
                 # Si c'est la sortie
-                if sprite == "e":
+                if sprite == "w":
                     screen.blit(gardian, (x,y))
+
+                # Si niddle
+                if sprite == "n":
+                    screen.blit(niddle, (x,y))
+
+                # Si tube
+                if sprite == "t":
+                    screen.blit(tube, (x,y))
+
+                # Si ether
+                if sprite == "e":
+                    screen.blit(ether, (x,y))
 
                 # incrémentation
                 n_sprite += 1

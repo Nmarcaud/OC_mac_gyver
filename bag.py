@@ -7,5 +7,5 @@ class Bag:
 	def __init__(self):
 
 		self.items = []
-		self.max_items = 10
+		self.max_items = 3
 		self.name = "bag"
