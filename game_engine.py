@@ -8,6 +8,8 @@ from item import Item
 from user_action import User_action
 
 import pygame
+import random
+
 
 # Init Pygame
 pygame.init()
@@ -18,6 +20,9 @@ screen = pygame.display.set_mode((600, 600))
 pygame.display.set_caption("MacGyver et le temple vraiment maudit 👻")
 
 
+
+
+
 # Action
 def main():
 
@@ -25,8 +30,21 @@ def main():
 	ma_map = Map()
 	ma_map.create_map()
 
-	# Création visuelle de la map
-	ma_map.show_map(screen)
+	# Instance du bag
+	bag = Bag()
+
+	# Liste Items
+	items_coord_list = {}
+
+	# Init Items
+	niddle_position = Item.random_position(ma_map.structure)
+	items_coord_list["niddle"] = niddle_position
+
+	tube_position = Item.random_position(ma_map.structure)
+	items_coord_list["tube"] = tube_position
+
+	ether_position = Item.random_position(ma_map.structure)
+	items_coord_list["ether"] = ether_position
 
 
 	# Creation du Hero
@@ -38,8 +56,8 @@ def main():
 	position_perso = perso.get_rect()	# = 0, 0 si vide
 	screen.blit(perso, position_perso)
 
-	# Instance du bag
-	bag = Bag()
+	# Création visuelle de la map
+	ma_map.show_map(screen, items_coord_list)
 
 
 	# Refresh
@@ -80,7 +98,7 @@ def main():
 
 				# Ajout au bag si objet
 				# Stockage du retour dans une variable pour plus de lisibilité
-				item_to_add = Item.is_it_an_item(ma_map.structure, mac_gyver.position)
+				item_to_add = Item.is_it_an_item(mac_gyver.position, items_coord_list)
 				if item_to_add != None:
 
 					# Pour éviter d'ajouter 2 fois l'item !
@@ -93,7 +111,7 @@ def main():
 
 
 		# Re-génération visuelle de la map
-		ma_map.show_map(screen)
+		ma_map.show_map(screen, items_coord_list)
 		# Modification visuelle position perso
 		screen.blit(perso, position_perso)
 		# Refresh
