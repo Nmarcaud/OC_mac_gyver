@@ -88,7 +88,7 @@ class Item:
 
 		for key, val in items_coord_list.items():
 
-			print(val, position[0]*40, position[1]*40)
+			#print(val, position[0]*40, position[1]*40)
 
 			if val == (position[1]*40, position[0]*40):
 

@@ -19,9 +19,9 @@ screen = pygame.display.set_mode((600, 600))
 # Titre du jeu
 pygame.display.set_caption("MacGyver et le temple vraiment maudit 👻")
 
-
-
-
+# Musique pour plus de fun ! (Ne fonctionne pas (erreur format))
+#pygame.mixer.music.load("ressource/8bit-theme.mp3")
+#pygame.mixer.music.play()
 
 # Action
 def main():
@@ -63,6 +63,8 @@ def main():
 	# Refresh
 	pygame.display.flip()
 
+	
+
 
 	launched = True
 	while launched:
@@ -82,19 +84,55 @@ def main():
 
 				# Action si fleche directionnelle Gauche
 				if event.key == pygame.K_LEFT:
-					position_perso = mac_gyver.move_left(mac_gyver.position, position_perso, bag.items)
+
+					# Retour de la fonction (tuple avec position et condition true ou flase pour continuer le jeu)
+					left_return = mac_gyver.move_left(mac_gyver.position, position_perso, bag.items)
+
+					# Recupération de la position
+					position_perso = left_return[0]
+					
+					# Fin du jeu
+					if left_return[1] == False:
+						launched = False 
 
 				# Action si fleche directionnelle Haut
 				elif event.key == pygame.K_UP:
-					position_perso = mac_gyver.move_up(mac_gyver.position, position_perso, bag.items)
+
+					# Retour de la fonction (tuple avec position et condition true ou flase pour continuer le jeu)
+					up_return = mac_gyver.move_up(mac_gyver.position, position_perso, bag.items)
+					
+					# Recupération de la position
+					position_perso = up_return[0]
+					
+					# Fin du jeu
+					if up_return[1] == False:
+						launched = False 
 
 				# Action si fleche directionnelle Droite
 				elif event.key == pygame.K_RIGHT:
-					position_perso = mac_gyver.move_right(mac_gyver.position, position_perso, bag.items)
+
+					# Retour de la fonction (tuple avec position et condition true ou flase pour continuer le jeu)
+					right_return = mac_gyver.move_right(mac_gyver.position, position_perso, bag.items)
+
+					# Recupération de la position
+					position_perso = right_return[0]
+					
+					# Fin du jeu
+					if right_return[1] == False:
+						launched = False 
 
 				# Action si fleche directionnelle Bas
 				elif event.key == pygame.K_DOWN:
-					position_perso = mac_gyver.move_down(mac_gyver.position, position_perso, bag.items)
+
+					# Retour de la fonction (tuple avec position et condition true ou flase pour continuer le jeu)
+					down_return = mac_gyver.move_down(mac_gyver.position, position_perso, bag.items)
+
+					# Recupération de la position
+					position_perso = down_return[0]
+					
+					# Fin du jeu
+					if down_return[1] == False:
+						launched = False 
 
 				# Ajout au bag si objet
 				# Stockage du retour dans une variable pour plus de lisibilité

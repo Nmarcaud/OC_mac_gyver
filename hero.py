@@ -1,6 +1,8 @@
 #! /usr/bin/env python3
 # coding: utf-8
 
+import pygame
+
 # Class Hero (Mac Gyver)
 class Hero:
 
@@ -29,7 +31,7 @@ class Hero:
             print("Can't Move Left (Border limit)")
 
             # RETURN position inchangée pour affichage
-            return position_perso
+            return position_perso, True
 
         else:
 
@@ -43,7 +45,7 @@ class Hero:
                 #print(self.message_position())
 
                 # RETURN position modifiée pour affichage
-                return position_perso.move(-40,0)
+                return position_perso.move(-40,0), True
 
 
             # Si c'est l'arrivée
@@ -56,14 +58,14 @@ class Hero:
                     print("You Win !")
 
                     # RETURN position modifiée pour affichage
-                    return position_perso.move(-40,0)
+                    return position_perso.move(-40,0), True
                 else:
 
                     # Messages console
-                    print("Can't win ! Il manque " + str(3-len(bag)) + " objets pour gagner !")
+                    print("You died ! Il manque " + str(3-len(bag)) + " objets pour gagner !")
 
                     # RETURN position inchangée pour affichage
-                    return position_perso
+                    return position_perso, False
 
 
             # il y a un mur
@@ -72,7 +74,7 @@ class Hero:
                 print("Can't Move (Wall)")
 
                 # RETURN position inchangée pour affichage
-                return position_perso
+                return position_perso, True
 
 
 
@@ -84,7 +86,7 @@ class Hero:
             print("Can't Move Up (Border limit)")
 
             # RETURN position inchangée pour affichage
-            return position_perso
+            return position_perso, True
 
         else:
 
@@ -98,7 +100,7 @@ class Hero:
                 #print(self.message_position())
 
                 # RETURN position modifiée pour affichage
-                return position_perso.move(0,-40)
+                return position_perso.move(0,-40), True
 
 
             # Si c'est l'arrivée
@@ -111,23 +113,23 @@ class Hero:
                     print("You Win !")
 
                     # RETURN position modifiée pour affichage
-                    return position_perso.move(0,-40)
+                    return position_perso.move(0,-40), True
                 else:
 
                     # Messages console
-                    print("Can't win ! Il manque " + str(3-len(bag)) + " objets pour gagner !")
+                    print("You died ! Il manque " + str(3-len(bag)) + " objets pour gagner !")
 
                     # RETURN position inchangée pour affichage
-                    return position_perso
+                    return position_perso, False
 
-
+                
             # il y a un mur
             else:
                 # Message console
                 print("Can't Move (Wall)")
 
                 # RETURN position inchangée pour affichage
-                return position_perso
+                return position_perso, True
 
 
 
@@ -139,7 +141,7 @@ class Hero:
             print("Can't Move Right (Border limit)")
 
             # RETURN position inchangée pour affichage
-            return position_perso
+            return position_perso, True
 
         else:
 
@@ -153,7 +155,7 @@ class Hero:
                 #print(self.message_position())
                 
                 # RETURN position modifiée pour affichage
-                return position_perso.move(40,0)
+                return position_perso.move(40,0), True
 
 
             # Si c'est l'arrivée
@@ -166,14 +168,16 @@ class Hero:
                     print("You Win !")
 
                     # RETURN position modifiée pour affichage
-                    return position_perso.move(40,0)
+                    return position_perso.move(40,0), True
                 else:
 
                     # Messages console
-                    print("Can't win ! Il manque " + str(3-len(bag)) + " objets pour gagner !")
+                    print("You died ! Il manque " + str(3-len(bag)) + " objets pour gagner !")
 
                     # RETURN position inchangée pour affichage
-                    return position_perso
+                    return position_perso, False
+
+
 
 
             # il y a un mur
@@ -182,7 +186,7 @@ class Hero:
                 print("Can't Move (Wall)")
 
                 # RETURN position inchangée pour affichage
-                return position_perso
+                return position_perso, True
 
 
 
@@ -194,7 +198,7 @@ class Hero:
             print("Can't Move Down (Border limit)")
 
             # RETURN position inchangée pour affichage
-            return position_perso
+            return position_perso, True
 
         else:
 
@@ -208,7 +212,7 @@ class Hero:
                 #print(self.message_position())
 
                 # RETURN position modifiée pour affichage
-                return position_perso.move(0,40)
+                return position_perso.move(0,40), True
 
 
             # Si c'est l'arrivée
@@ -221,15 +225,14 @@ class Hero:
                     print("You Win !")
 
                     # RETURN position modifiée pour affichage
-                    return position_perso.move(0,40)
+                    return position_perso.move(0,40), True
                 else:
 
                     # Messages console
-                    print("Can't win ! Il manque " + str(3-len(bag)) + " objets pour gagner !")
+                    print("You died ! Il manque " + str(3-len(bag)) + " objets pour gagner !")
 
                     # RETURN position inchangée pour affichage
-                    return position_perso
-
+                    return position_perso, False
 
 
             # il y a un mur
@@ -238,7 +241,7 @@ class Hero:
                 print("Can't Move (Wall)")
 
                 # RETURN position inchangée pour affichage
-                return position_perso
+                return position_perso, True
     
 
     
